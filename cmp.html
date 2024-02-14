@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html style="width: 100%">
+    <head>
+        <script type="text/javascript">
+            window.__npcmp_display_mode = 'app';
+        </script>
+        <script data-cfasync="false" async src="https://consent.nitrocnct.com/loader.js"></script>
+    </head>
+
+    <body style="width: 100%; margin: 0">
+        <script>
+            const urlParams = new URLSearchParams(window.location.search);
+            const resurface = urlParams.get('resurface');
+
+            function callback(tcData) {
+                if (tcData?.eventStatus == 'useractioncomplete') {
+                    window.close();
+                }
+            }
+
+            function test() {
+                if (window.__cmp) {
+                    if (resurface) {
+                        window.__cmp('showModal');
+                    } else {
+                        window.__cmp('showConsentTool');
+                    }
+
+                    window.__tcfapi('addEventListener', 2, callback);
+                    return;
+                } else if (typeof window['__npcmp_gdpr'] !== 'undefined' && !window['__npcmp_gdpr']) {
+                    window.close();
+                    return;
+                }
+                setTimeout(test, 100);
+            }
+
+            if (!resurface) {
+                window.__tcfapi_queue = [['addEventListener', 2, callback]];
+            }
+
+            test();
+        </script>
+    </body>
+</html>

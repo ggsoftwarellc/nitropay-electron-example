@@ -1,0 +1,11 @@
+{
+    "compileOnSave": true,
+    "compilerOptions": {
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "allowJs": true,
+        "target": "es2017",
+        "module": "commonjs",
+        "moduleResolution": "node"
+    }
+}
